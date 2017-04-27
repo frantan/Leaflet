@@ -1,0 +1,50 @@
+---
+title: "Australia"
+author: "Francesca Tantardini"
+date: "April 27, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+Here are some places in Australia I would like to visit. 
+```{r, message=FALSE, warning=FALSE}
+library(leaflet)
+mypoints<-data.frame(lat=c(-33.8569091,  -33.892543,-33.844412, -38.664659, 
+                           -37.809746, -37.811242, -37.805817, -37.784533, -25.345405, -25.300916), 
+                     lng=c(151.2154308, 151.275191, 151.241103, 143.103001, 
+                           144.966182, 144.973971, 144.971342, 144.951838, 131.031984, 130.722509))
+
+# AusIcon <- makeIcon(
+#     iconUrl = "C:/Users/Francy/Documents/Coursera/DevelopingDataProducts/Kanguro.jpg",
+#     iconWidth = 31*215/230, iconHeight = 31,
+#     iconAnchorX = 31*215/230/2, iconAnchorY = 16
+# )
+
+## to use with option icon = AusIcon in addMarkers
+
+webSites <- c(
+    "<a href='https://www.sydneyoperahouse.com/'>Opera House</a>",
+    "<a href='http://www.australia.com/en/places/nsw/nsw-bondi-beach.html'>Bondi Beach</a>",
+    "<a href='https://taronga.org.au/taronga-zoo'>Taronga Zoo</a>",
+    "<a href='http://visit12apostles.com.au/'>Twelve Apostles</a>",
+    "<a href='https://www.slv.vic.gov.au/'>State Library of Victoria</a>",
+    "<a href='https://en.wikipedia.org/wiki/Parliament_House,_Melbourne'>Parliament House</a>",
+    "<a href='https://museumvictoria.com.au/melbournemuseum/'>Melbourne Museum</a>",
+    "<a href='https://www.zoo.org.au/melbourne'>Melbourne Zoo</a>",
+    "<a href='http://www.australia.com/en/places/red-centre/kata-tjuta.html'>Kata Tjuta</a>",
+    "<a href='http://northernterritory.com/uluru-and-surrounds/uluru-ayers-rock'>Ayers Rock</a>"
+)
+
+
+mypoints %>%    
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(popup = webSites, clusterOptions = markerClusterOptions()
+)
+               
+```
+
